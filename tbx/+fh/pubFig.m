@@ -1,9 +1,10 @@
-function f = pubFig(opts)
+function [f,tt] = pubFig(opts)
 arguments
     opts.Num = 1;
     opts.Layout = [1,1];
     opts.Size = [8,10];
     opts.Pos = [4,4];
+    opts.FontSize = 9;
 end
     f = figure(opts.Num);
     f.Units = "centimeters";
@@ -17,6 +18,6 @@ end
         hold on
         grid on
         box on
-        ax.FontSize = 10;
+        ax.FontSize = opts.FontSize;
     end
 end
