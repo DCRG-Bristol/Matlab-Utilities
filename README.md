@@ -6,23 +6,24 @@ The intention of this toolbox is to:
 - encourage a more informal sharing of matlab functions between researchers
 
 As such the toolbox has 3 main directories:
-- within the top level folder all function appear on the matlab path for easy access. such common functions (like struct2csv) complement current MATLAB functions and have little chance of masking other functions.
- - the +dcrg namespace structure enables common functions to not 'bloat the MATLAB namespace, reducing the risk of 'function masking'. These function can be called like so `dcrg.signal.psd(X,Fs)` (which incidently is a function produce the power spectial density of an input X at a smapling frequency Fs - i.e. code i imagine everyone has there own varient of....)
+- within the top level folder all function appear on the matlab path for easy access. Such common functions (like struct2csv) complement current MATLAB functions and have little chance of masking other functions.
+ - the +dcrg namespace structure enables common functions to not 'bloat the MATLAB namespace, reducing the risk of 'function masking'. These function can be called like so `dcrg.signal.psd(X,Fs)` (which incidently is a function produce the power spectial density of an input X at a sampling frequency Fs - i.e. code I imagine everyone has there own varient of....)
  - the personal namespaces such as +fh. These just act as a convient place to store your own personal functions that you dont want to explicitly share with everyone else yet, but would like to access through your own code e.g. `fh.LoadRunNumber(1234)`
 
-Many of the functions is this toolbox are currently just 'copy and pasted' from MATLAB's file exchange...
+Many of the functions in this toolbox are currently just 'copy and pasted' from MATLAB's file exchange...
 
 I'm not sure what this repository will turn into, and as such I've tried to make it as inviting and flexible as possible, so that people feel happy using/contributing to it. Adding examples for you additions would be great, as would unit test but they're not essential for now....
 
 ## Getting Started
 
 - Either clone or download the repository
-- add the folder tbx to the path or instal with the Matlab Pacakge Manager (mpm)
-    - mpm install ads -u <INSTALL_DIR> --local -e --force
+- add the folder tbx to the path or instal with package Installer for matlab (pim)
+    - pim install ads -u <INSTALL_DIR> --local -e --force
+    - pim install dcrg-Bristol/Matlab-Utilities
 
 ### Prerequisites
 
-This product was developed in MATLAB 9.12 (2022a)
+This product was developed in MATLAB 9.12 (2023a)
 
 ## Running Tests
  A basic testing framwork is supplied in this template to run all of the scripts
