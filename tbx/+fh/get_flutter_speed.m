@@ -1,4 +1,4 @@
-function fs = get_flutter_speed(data,opts)
+function [fs,ModeIdx] = get_flutter_speed(data,opts)
 arguments
     data
     opts.filter = {};
@@ -12,9 +12,10 @@ end
         opts.NModes = max([data.(opts.Mode)]);
     end
     if ~isempty(opts.filter)
-        data = farg.struct.filter(data,opts.filter);
+        data = dcrg.struct.filter(data,opts.filter);
     end
     fs = inf;    
+    ModeIdx = inf;
     for i = 1:opts.NModes
         I = [data.MODE] == i;
         x = [data(I).(opts.XAxis)];
@@ -24,6 +25,7 @@ end
         if ~isnan(tmp_fs)
             if tmp_fs < fs
                 fs = tmp_fs;
+                ModeIdx = i;
             end
         end     
     end

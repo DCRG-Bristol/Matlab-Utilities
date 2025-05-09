@@ -1,0 +1,56 @@
+function [nx, ny] = normCoord(x, y, Where, axes)
+arguments
+    x
+    y
+    Where string {mustBeMember(Where,["OnFigure","OnAxis"])} = "OnFigure";
+    axes = gca
+end
+%% Header
+% Written by Abraham Asfaw
+% asfaw@princeton.edu
+% Inspired by regular plot version here:
+% http://www.mathworks.com/matlabcentral/fileexchange/10656-data-space-to-figure-units-conversion
+%% Function
+% x_point = x value that you want to be normalized
+% y_point = y value that corresponds to the x_point
+% axes = axes of the current plot (gca)
+xl = axes.XLim;
+yl = axes.YLim;
+pos = axes.Position;
+xlog_bool = strcmp(axes.XScale,'log'); 
+ylog_bool = strcmp(axes.YScale,'log'); 
+
+if xlog_bool && ylog_bool % loglog plots
+    x = log(x);
+    y = log(y);
+    xlims = log(xl);
+    ylims = log(yl);
+elseif xlog_bool % semilogx plots
+    x = log(x);
+    y = y;
+    xlims = log(xl);
+    ylims = yl;    
+elseif ylog_bool % semilogy plots
+    x = x;
+    y = log(y);
+    xlims = xl;
+    ylims = log(yl);
+else % plot plots
+    x = x;
+    y = y;
+    xlims = xl;
+    ylims = yl;
+end
+
+switch Where
+    case "OnFigure"
+        nx = ((x-xlims(1))/(xlims(2) - xlims(1)))*(pos(3)-pos(1));
+        ny = ((y-ylims(1))/(ylims(2) - ylims(1)))*(pos(4)-pos(2));
+        nx = pos(1) + nx;
+        ny = pos(2) + ny;
+    case "OnAxis"
+        nx = ((x-xlims(1))/(xlims(2) - xlims(1)));
+        ny = ((y-ylims(1))/(ylims(2) - ylims(1)));
+end
+        
+end

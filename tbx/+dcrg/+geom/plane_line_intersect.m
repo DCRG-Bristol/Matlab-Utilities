@@ -36,10 +36,10 @@ D = dot(n,u);
 N = -dot(n,w);
 if abs(D) < 10^-7        % The segment is parallel to plane
         if N == 0           % The segment lies in plane
-            check = farg.geom.IntersectType.WithinPlane;
+            check = dcrg.geom.IntersectType.WithinPlane;
             return
         else
-            check = farg.geom.IntersectType.NoIntersection;       %no intersection
+            check = dcrg.geom.IntersectType.NoIntersection;       %no intersection
             return
         end
 end
@@ -47,9 +47,9 @@ end
 sI = N / D;
 I = P0+ sI.*u;
 if (sI < 0 || sI > 1)
-    check = farg.geom.IntersectType.OutsideSegment;          %The intersection point  lies outside the segment, so there is no intersection
+    check = dcrg.geom.IntersectType.OutsideSegment;          %The intersection point  lies outside the segment, so there is no intersection
 else
-    check = farg.geom.IntersectType.InsideSegment;
+    check = dcrg.geom.IntersectType.InsideSegment;
 end
 
 

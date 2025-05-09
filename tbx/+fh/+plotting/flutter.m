@@ -33,7 +33,7 @@ end
 %   - Colors: nx3 matrix of colors to plot
 %
 if ~isempty(opts.filter)
-    data = farg.struct.filter(data,opts.filter);
+    data = dcrg.struct.filter(data,opts.filter);
 end
 
 if isempty(opts.NModes)
@@ -55,7 +55,7 @@ for i = 1:M_idx
     pl(i) = plot(x,y,plt_opts{:});
     pl(i).Color = opts.Colors(mod(i-1,size(opts.Colors,1))+1,:);
     if ~isempty(opts.DisplayName)
-        pl(i).DisplayName = [opts.DisplayName,' ',num2str(i)];
+        pl(i).DisplayName = [char(opts.DisplayName),' ',num2str(i)];
     else
         pl(i).Annotation.LegendInformation.IconDisplayStyle = 'off';
     end

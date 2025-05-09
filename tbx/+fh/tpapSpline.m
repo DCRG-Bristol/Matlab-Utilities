@@ -21,7 +21,7 @@ classdef tpapSpline
             end
             %TPAPSPLINE Construct an instance of this class
             %   Detailed explanation goes here
-            [obj.n,obj.V,obj.p] = farg.geom.affineFit(Xs');
+            [obj.n,obj.V,obj.p] = dcrg.geom.affineFit(Xs');
             Xs_2d = obj.get_projection(Xs);
 
             idx = ismember(res_modeshape(1).IDs,GIDs);

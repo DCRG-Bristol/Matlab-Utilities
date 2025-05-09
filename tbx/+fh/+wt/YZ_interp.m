@@ -11,7 +11,7 @@ end
     Vs = [15,25,35];
     F = {};
     for i = 1:3
-        tmp_res = farg.struct.filter(final_data,{{'U_inf',{'tol',Vs(i),1.5}},{'Radius',@(x)abs(x)>0}});
+        tmp_res = dcrg.struct.filter(final_data,{{'U_inf',{'tol',Vs(i),1.5}},{'Radius',@(x)abs(x)>0}});
         y = [tmp_res.y]';
         z = [tmp_res.z]';
         us = [tmp_res.U]';
