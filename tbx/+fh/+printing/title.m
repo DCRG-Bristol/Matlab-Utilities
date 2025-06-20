@@ -32,7 +32,7 @@ function varargout = title(str,opts)
         padding = [padding,repmat(char(opts.Symbol(1)),1,floor(opts.Length/2)),...
             repmat(char(opts.Symbol(2)),1,ceil(opts.Length/2)),'\n'];
     end
-    fprintf(opts.fid,[padding,str,'\n',padding]);
+    fprintf(opts.fid,[padding,'%s\n',padding], str);
     if nargout>0
         varargout{1} = str;
     end
