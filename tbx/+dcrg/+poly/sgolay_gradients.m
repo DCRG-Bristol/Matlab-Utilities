@@ -1,4 +1,4 @@
-function dy = get_sgolay_gradients(y,derivs,period,s_golay_order,s_golay_window_size)
+function dy = sgolay_gradients(y,derivs,period,s_golay_order,s_golay_window_size)
 %GET_SGOLAY_GRADIENTS get sgolay derivs of y
 %   dy = GET_SGOLAY_GRADIENTS(y,derivs,s_golay_order,s_golay_window_size)
 %       y - is a Mx1 column vector of data to filter

@@ -1,4 +1,8 @@
 function out = mat2clip(a, delim)
+  arguments
+    a
+    delim char = '\t'
+  end
 %MAT2CLIP  Copies matrix to system clipboard.
 %
 % MAT2CLIP(A) copies the contents of 2-D matrix A to the system clipboard.
@@ -48,15 +52,11 @@ if ndims(a) ~= 2
 end
 % each element is separated by tabs and each row is separated by a NEWLINE
 % character.
-sep = {'\t', '\n', ''};
-if nargin == 2
-  if ischar(delim)
-    sep{1} = delim;
-  else
-    error('mat2clip:CharacterDelimiter', ...
-      'Only character array for delimiters');
-  end
+if ~ischar(delim)
+  error('mat2clip:CharacterDelimiter', ...
+    'Only character array for delimiters');
 end
+sep = {delim, '\n', ''};
 % try to determine the format of the numeric elements.
 switch get(0, 'Format')
   case 'short'
@@ -76,7 +76,6 @@ switch get(0, 'Format')
 end
 if iscell(a)  % cell array
     a = a';
-    
     floattypes = cellfun(@isfloat, a);
     inttypes = cellfun(@isinteger, a);
     logicaltypes = cellfun(@islogical, a);

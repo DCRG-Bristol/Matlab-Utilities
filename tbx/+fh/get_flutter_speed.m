@@ -1,4 +1,4 @@
-function [fs,ModeIdx] = get_flutter_speed(data,opts)
+function [fs,ModeIdx,Fvf] = get_flutter_speed(data,opts)
 arguments
     data
     opts.filter = {};
@@ -6,7 +6,7 @@ arguments
     opts.XAxis = 'V';
     opts.YAxis = 'D';
     opts.Mode = 'MODE';
-    opts.Delta = 0;
+    opts.Delta = -1e-10;
 end
     if isempty(opts.NModes)
         opts.NModes = max([data.(opts.Mode)]);
@@ -16,16 +16,19 @@ end
     end
     fs = inf;    
     ModeIdx = inf;
+    Fvf = inf;
     for i = 1:opts.NModes
         I = [data.MODE] == i;
         x = [data(I).(opts.XAxis)];
         D = [data(I).(opts.YAxis)];
+        F = [data(I).('F')];
         [~,I] = sort(x);
         tmp_fs = find_crossing(x(I),D(I)-opts.Delta);
         if ~isnan(tmp_fs)
             if tmp_fs < fs
                 fs = tmp_fs;
                 ModeIdx = i;
+                Fvf = F(i);
             end
         end     
     end
