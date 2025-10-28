@@ -16,7 +16,7 @@ function varargout = title(str,opts)
     elseif length(str) == opts.Length-2
         str = [' ',str,' '];
     elseif length(str) == opts.Length-3
-        str = ['- ',str,' '];
+        str = [opts.Symbol(1),' ',str,' '];
     else
         delta = opts.Length-(length(str)+2);
         dashes = repmat(opts.Symbol(1),1,floor(delta/2));
@@ -24,7 +24,7 @@ function varargout = title(str,opts)
         if mod(delta,2) == 0
             str = [dashes,' ',str,' ',dashes_2];
         else
-            str = [dashes,' ',str,' ',dashes_2,dashes_2];
+            str = [dashes,' ',str,' ',dashes_2,opts.Symbol(2)];
         end
     end
     padding = '';
